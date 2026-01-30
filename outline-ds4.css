@@ -225,3 +225,23 @@ html, body { background: transparent !important; margin: 0; padding: 0; }
   border-color: rgba(255,255,255,0.98) !important;
   filter: drop-shadow(0 0 6px rgba(255,255,255,0.8));
 }
+/* ===== KILL CONTROLLER BASE ART (img/svg) ===== */
+/* 本体のベース画像は <img>/<svg> で入ってることがあるので、コントローラー内だけ全消し */
+.edit .controller img,
+.edit .controller svg,
+.edit .controller object,
+.edit .controller embed {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+/* ついでに “画像っぽいレイヤー名” を広めに潰す */
+.edit .controller [class*="base"],
+.edit .controller [class*="plate"],
+.edit .controller [class*="shell"],
+.edit .controller [class*="body"],
+.edit .controller [class*="art"],
+.edit .controller [class*="skin"] {
+  opacity: 0 !important;
+  background-image: none !important;
+}
