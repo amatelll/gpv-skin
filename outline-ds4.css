@@ -127,19 +127,6 @@ html, body { background: transparent !important; margin: 0; padding: 0; }
   visibility: hidden !important;
 }
 
-/* 「擬似要素で描かれている本体」も消す */
-.edit .controller::before,
-.edit .controller::after,
-.edit .base::before,
-.edit .base::after,
-.edit .shell::before,
-.edit .shell::after,
-.edit .body::before,
-.edit .body::after {
-  background: transparent !important;
-  background-image: none !important;
-}
-
 /* ただし、あなたが描いた“枠線”は消したくないので
    いまの枠線を controller の別の疑似要素に移すのが理想だが、
    まずは本体画像の除去を優先。枠線が消えたら教えて。 */
@@ -170,4 +157,71 @@ html, body { background: transparent !important; margin: 0; padding: 0; }
 .edit .meta,
 .edit .touchpad {
   opacity: unset !important;
+}
+/* ===== FINAL FIX: kill base art, keep outline on top ===== */
+
+/* 1) 本体の「1枚絵」だけ消す（ボタンのDOMは消さない） */
+.edit .controller,
+.edit .controller * {
+  background-image: none !important;
+}
+
+/* 青い本体を描いてることが多いレイヤーを透明化 */
+.edit .controller .base,
+.edit .controller .body,
+.edit .controller .shell,
+.edit .controller .ds4,
+.edit .controller .frontplate,
+.edit .controller .backplate {
+  opacity: 0 !important;
+}
+
+/* 2) 枠線は controller の疑似要素で“最前面”に描く */
+.edit .controller {
+  position: relative !important;
+}
+
+.edit .controller::before{
+  content:"";
+  position:absolute;
+  left: 46px; right: 46px;
+  top: 52px; bottom: 58px;
+  border: 1.4px solid rgba(255,255,255,0.22);
+  border-radius: 280px;
+  pointer-events:none;
+  z-index: 9999;
+}
+
+.edit .controller::after{
+  content:"";
+  position:absolute;
+  left: 68px; right: 68px;
+  top: 74px; bottom: 80px;
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 260px;
+  pointer-events:none;
+  z-index: 9999;
+}
+
+/* 3) 入力表示パーツは見えるようにする（枠線思想） */
+.edit .button,
+.edit .face,
+.edit .stick,
+.edit .trigger,
+.edit .bumper,
+.edit .dpad .face,
+.edit .meta,
+.edit .touchpad {
+  background: transparent !important;
+  opacity: 0.28;
+  border: 1.3px solid rgba(255,255,255,0.28) !important;
+  border-radius: 999px;
+  z-index: 10000;
+}
+
+.edit .pressed{
+  opacity: 1 !important;
+  border-width: 2.2px !important;
+  border-color: rgba(255,255,255,0.98) !important;
+  filter: drop-shadow(0 0 6px rgba(255,255,255,0.8));
 }
