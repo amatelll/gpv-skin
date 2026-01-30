@@ -95,3 +95,51 @@ html, body { background: transparent !important; margin: 0; padding: 0; }
   border-radius: 999px;
   pointer-events:none;
 }
+/* ===== FORCE HIDE BASE SKIN ART (blue DS4 etc.) ===== */
+/* 本体の塗り・画像・マスク・擬似要素を強制的に消す */
+
+.edit .controller,
+.edit .controller *,
+.edit .custom,
+.edit .custom * {
+  background: transparent !important;
+  background-image: none !important;
+  -webkit-mask: none !important;
+  mask: none !important;
+  filter: none !important;
+}
+
+/* 画像/スプライトの表示を殺す（img / svg / object など） */
+.edit img,
+.edit svg,
+.edit object,
+.edit embed,
+.edit .art,
+.edit .skin,
+.edit .base,
+.edit .ds4,
+.edit .shell,
+.edit .body,
+.edit .front,
+.edit .backplate,
+.edit .frontplate {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+/* 「擬似要素で描かれている本体」も消す */
+.edit .controller::before,
+.edit .controller::after,
+.edit .base::before,
+.edit .base::after,
+.edit .shell::before,
+.edit .shell::after,
+.edit .body::before,
+.edit .body::after {
+  background: transparent !important;
+  background-image: none !important;
+}
+
+/* ただし、あなたが描いた“枠線”は消したくないので
+   いまの枠線を controller の別の疑似要素に移すのが理想だが、
+   まずは本体画像の除去を優先。枠線が消えたら教えて。 */
