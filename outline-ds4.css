@@ -1,0 +1,97 @@
+/* ===============================
+   DS4 OUTLINE ONLY (Gamepad Viewer)
+   - controller + buttons: outline only
+   - background: transparent
+   - pressed: brighter + thicker + subtle glow
+   =============================== */
+
+/* DS4 Outline ONLY (for editcss=) */
+
+html, body { background: transparent !important; margin: 0; padding: 0; }
+
+/* editcss= を使うと .edit が付く（公式仕様） */
+.edit, .edit * {
+  box-sizing: border-box;
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+/* 既存スキンの画像を殺す（でも要素自体は消さない） */
+.edit .controller,
+.edit .controller * {
+  background-image: none !important;
+}
+
+/* 本体の線（既存要素の上に描く） */
+.edit .controller {
+  position: relative !important;
+  background: transparent !important;
+}
+
+/* 外枠 */
+.edit .controller::before{
+  content:"";
+  position:absolute;
+  left: 46px; right: 46px;
+  top: 52px; bottom: 58px;
+  border: 1.4px solid rgba(255,255,255,0.22);
+  border-radius: 280px;
+  pointer-events:none;
+}
+
+/* 内枠 */
+.edit .controller::after{
+  content:"";
+  position:absolute;
+  left: 68px; right: 68px;
+  top: 74px; bottom: 80px;
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 260px;
+  pointer-events:none;
+}
+
+/* 枠線パーツ（ボタン類） */
+.edit .button,
+.edit .face,
+.edit .back, .edit .start,
+.edit .meta,
+.edit .touchpad,
+.edit .bumper, .edit .trigger,
+.edit .stick {
+  background: transparent !important;
+  border: 1.3px solid rgba(255,255,255,0.28) !important;
+  border-radius: 999px;
+  opacity: 0.28;
+  transition: opacity 0.08s ease, border-color 0.08s ease, border-width 0.08s ease, filter 0.08s ease;
+}
+
+/* 押下時 */
+.edit .pressed{
+  opacity: 1 !important;
+  border-width: 2.2px !important;
+  border-color: rgba(255,255,255,0.98) !important;
+  filter: drop-shadow(0 0 6px rgba(255,255,255,0.8));
+}
+
+/* Dpadは角丸控えめ */
+.edit .dpad .face{ border-radius: 12px !important; opacity: 0.22; }
+
+/* トリガー/バンパーは薄め（チカチカ防止） */
+.edit .trigger, .edit .bumper{ opacity: 0.20; }
+.edit .trigger.pressed, .edit .bumper.pressed{
+  opacity: 0.85 !important;
+  filter: drop-shadow(0 0 5px rgba(255,255,255,0.65));
+}
+
+/* タッチパッドは邪魔になりやすいので薄く */
+.edit .touchpad{ opacity: 0.16; }
+
+/* スティック内輪 */
+.edit .stick::after{
+  content:"";
+  position:absolute;
+  inset: 18px;
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 999px;
+  pointer-events:none;
+}
