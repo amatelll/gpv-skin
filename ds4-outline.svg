@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ds4-outline.svg
+     Stylized DS4-ish top outline (NOT an exact Sony DS4 outline).
+     Replace with your own DS4 outline SVG anytime.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" width="806" height="598" viewBox="0 0 806 598">
+  <g fill="none" stroke="white" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" opacity="0.85">
+    <!-- Outer shell (stylized) -->
+    <path d="M120 120
+             C120 70, 220 40, 300 60
+             C340 70, 360 90, 403 90
+             C446 90, 466 70, 506 60
+             C586 40, 686 70, 686 120
+             C686 180, 676 220, 656 290
+             C632 375, 602 490, 520 520
+             C460 542, 430 520, 403 520
+             C376 520, 346 542, 286 520
+             C204 490, 174 375, 150 290
+             C130 220, 120 180, 120 120 Z"/>
+    <!-- Inner ring -->
+    <path opacity="0.35" d="M160 150
+             C160 105, 245 85, 312 100
+             C345 108, 365 122, 403 122
+             C441 122, 461 108, 494 100
+             C561 85, 646 105, 646 150
+             C646 205, 638 240, 622 300
+             C603 372, 579 470, 510 495
+             C457 514, 430 496, 403 496
+             C376 496, 349 514, 296 495
+             C227 470, 203 372, 184 300
+             C168 240, 160 205, 160 150 Z"/>
+  </g>
+</svg>
