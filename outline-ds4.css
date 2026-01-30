@@ -143,3 +143,31 @@ html, body { background: transparent !important; margin: 0; padding: 0; }
 /* ただし、あなたが描いた“枠線”は消したくないので
    いまの枠線を controller の別の疑似要素に移すのが理想だが、
    まずは本体画像の除去を優先。枠線が消えたら教えて。 */
+/* ===== FINAL: HIDE DS4 BASE IMAGE ONLY ===== */
+/* 青い本体の「1枚絵」を完全に消す */
+
+.edit .controller,
+.edit .controller .base,
+.edit .controller .ds4 {
+  background: transparent !important;
+  background-image: none !important;
+}
+
+/* 本体の“塗り”専用レイヤーだけ透明化（形は残す） */
+.edit .controller .base,
+.edit .controller .body,
+.edit .controller .shell {
+  opacity: 0 !important;
+}
+
+/* ただし操作表示（ボタン・スティック）は表示させる */
+.edit .button,
+.edit .face,
+.edit .stick,
+.edit .trigger,
+.edit .bumper,
+.edit .dpad,
+.edit .meta,
+.edit .touchpad {
+  opacity: unset !important;
+}
